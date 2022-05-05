@@ -1,0 +1,519 @@
+ <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="/src/css/main.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body style="background-color:rgb(71, 73, 68);">
+    <iframe id="showcase" style="padding: 15px; display: inline-block; position: relative;" height="99%" width="100%" 
+    src="/bundle/showcase.html?m=jZ4bAfuejFL&play=1&qs=1&log=0&applicationKey=bq0f5ibf2thskf2mh59a375md" frameborder=”0” allow="xr-spatial-tracking"
+        allowfullscreen>
+    </iframe>
+    <!-- <div class="tag-quiz" id="quiz" >
+        <button id="closeQuiz" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="red" class="bi bi-x" viewBox="0 0 16 16">
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+        </button>
+        <div class="question" id="question"></div><br/>
+        <input class="answer"  name="answer" id="answer1" type="radio"/><label id="lblanswer1" for="answer1"></label><br/>
+        <input class="answer"  name="answer" id="answer2" type="radio"/><label id="lblanswer2" for="answer2"></label><br/>
+        <input class="answer"  name="answer" id="answer3" type="radio"/><label id="lblanswer3" for="answer3"></label><br/>
+        <input class="answer"  name="answer" id="answer4" type="radio"/><label id="lblanswer4" for="answer4"></label><br/>
+        <label class="result" id="quizresult"></label>
+    </div> -->
+    <!-- <div id="score" class="score">
+        <label>Your point:</label>
+        <label id="lblPoint">0/3</label>
+        <button type="button" id="btnHint">Get a hint</a>
+    </div> -->
+
+    
+    <div class="compass">
+        <div class="arrow" id="compassDiscImg"></div>
+        <div class="disc"></div>
+    </div>
+    <div class="degree">
+        <div class="col-12 left direction" id="displaydegree"></div>
+        <div class="col-12 left direction" id="displaydirection"></div>
+    </div>
+        <!-- <button class="btn btn-primary" style="margin-left: 15px; position: fixed; top: 590px; width: 80px; height: 80px;" type="button" data-bs-toggle="modal" data-bs-target="#addModal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+            </svg>
+        </button> -->
+
+        <button class="plusbutton" type="button" data-bs-toggle="modal" data-bs-target="#addModal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+            </svg>
+        </button>
+
+        <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add item</h5>
+                        <button type="button" id="btn-close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <label for="message-text" class="col-form-label">Item:</label>
+                                <select class="form-select form-select-lg mb-3" id="allItems" aria-label=".form-select-lg example">
+                    </select>
+                            </div>
+
+                            <!-- <input class="form-control " type="text" placeholder="Tag name" id="tagname" /> -->
+
+                            <div class="col">
+                                <label for="message-text" class="col-form-label">Media type:</label>
+                                <select name="type" class="form-select form-select-lg mb-3" id="mediaType">
+                <option value="NONE">None</option>
+                <option value="PHOTO">Photo</option>
+                <option value="VIDEO">Video</option>
+                </select>
+                            </div>
+                            <div class="col">
+                                <label for="message-text" class="col-form-label">Media url:</label>
+                                <input class="form-control" style="height: 48px !important;" type="text" placeholder="Media url" id="mediaUrl" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <input class="form-control col" style="margin-left: 10px;" type="text" placeholder="Description" id="description" />
+                            <input class="form-control col" style="margin-left: 10px;" type="text" placeholder="Position X" id="x" />
+                            <input class="form-control col" style="margin-left: 10px;" type="text" placeholder="Position Y" id="y" />
+                            <input class="form-control col" style="margin-left: 10px;" type="text" placeholder="Position Z" id="z" />
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnAddTag" class="btn btn-primary" data-bs-dismiss="modal" type="button">Add tag</button><br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <button type="button" class="searchbutton" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Search box</h5>
+                        <button type="button" id="btn-close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <select class="form-select form-select-lg mb-3" id="categoryDropdown" aria-label=".form-select-lg example">
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <input class="form-control" style="height: 48px;" id="inputItem" placeholder="Type to search item">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" id="btnSeachItem" style="height: 48px;" class="btn btn-primary">Search</button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label for="message-text" style="font-size: larger; font-weight: bold;" class="col-form-label">Result</label>
+                                <div id="loading" class="d-flex justify-content-center">
+                                    <div class="spinner-border" role="status">
+                                    </div>
+                                </div>
+                                <div id="no-data" class="d-flex justify-content-center">
+                                    <div class="no-data">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-cloud" viewBox="0 0 16 16">
+                                        <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/>
+                                        </svg>
+                                        <h5 style="position: absolute; bottom: 0px;">No data</h5>
+                                    </div>
+                                </div>
+                                <div class="list-group" id="list-item" role="tablist">
+
+                                </div>
+
+                                <!-- <input class="form-control" list="itemDropdown" id="inputItem" placeholder="Type to search item">
+                                <datalist id="itemDropdown">
+                                </datalist> -->
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnSearchTag" data-bs-dismiss="modal" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <button id="btnPlayGame" type="button" style="margin-left: 15px; position: fixed; top: 260px; width: 80px; height: 80px;" class="btn btn-primary" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-controller" viewBox="0 0 16 16">
+                <path d="M11.5 6.027a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm2.5-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm-6.5-3h1v1h1v1h-1v1h-1v-1h-1v-1h1v-1z"/>
+                <path d="M3.051 3.26a.5.5 0 0 1 .354-.613l1.932-.518a.5.5 0 0 1 .62.39c.655-.079 1.35-.117 2.043-.117.72 0 1.443.041 2.12.126a.5.5 0 0 1 .622-.399l1.932.518a.5.5 0 0 1 .306.729c.14.09.266.19.373.297.408.408.78 1.05 1.095 1.772.32.733.599 1.591.805 2.466.206.875.34 1.78.364 2.606.024.816-.059 1.602-.328 2.21a1.42 1.42 0 0 1-1.445.83c-.636-.067-1.115-.394-1.513-.773-.245-.232-.496-.526-.739-.808-.126-.148-.25-.292-.368-.423-.728-.804-1.597-1.527-3.224-1.527-1.627 0-2.496.723-3.224 1.527-.119.131-.242.275-.368.423-.243.282-.494.575-.739.808-.398.38-.877.706-1.513.773a1.42 1.42 0 0 1-1.445-.83c-.27-.608-.352-1.395-.329-2.21.024-.826.16-1.73.365-2.606.206-.875.486-1.733.805-2.466.315-.722.687-1.364 1.094-1.772a2.34 2.34 0 0 1 .433-.335.504.504 0 0 1-.028-.079zm2.036.412c-.877.185-1.469.443-1.733.708-.276.276-.587.783-.885 1.465a13.748 13.748 0 0 0-.748 2.295 12.351 12.351 0 0 0-.339 2.406c-.022.755.062 1.368.243 1.776a.42.42 0 0 0 .426.24c.327-.034.61-.199.929-.502.212-.202.4-.423.615-.674.133-.156.276-.323.44-.504C4.861 9.969 5.978 9.027 8 9.027s3.139.942 3.965 1.855c.164.181.307.348.44.504.214.251.403.472.615.674.318.303.601.468.929.503a.42.42 0 0 0 .426-.241c.18-.408.265-1.02.243-1.776a12.354 12.354 0 0 0-.339-2.406 13.753 13.753 0 0 0-.748-2.295c-.298-.682-.61-1.19-.885-1.465-.264-.265-.856-.523-1.733-.708-.85-.179-1.877-.27-2.913-.27-1.036 0-2.063.091-2.913.27z"/>
+              </svg>
+        </button> -->
+        <!-- <button id="openPrinter" type="button" style="margin-left: 15px; position: fixed; top: 380px; width: 80px; height: 80px;" class="btn btn-primary" >
+            <a href="192.168.10.129" alt="Broken Link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+              </svg>
+            </a>
+        </button> -->
+    </div>
+    <button type="button" style="display: none;" id="openModalButton" [hidden]="true" data-bs-toggle="modal" data-bs-target="#modalItemInfo">
+    </button>
+    <div class="modal fade" id="modalItemInfo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="itemInfoLabel">Item infomation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Item code:</label>
+                            <p id="itemCode"></p>
+                            <label>Item Description:</label>
+                            <p id="itemDes"></p>
+                            <label>Item Short Description:</label>
+                            <p id="itemShortDes"></p>
+                            <label>Item quantity:</label>
+                            <p id="quantity"></p>
+                        </div>
+                        <image class="col-md-6" style="width:240px; height: 150px;" src="https://cdn.tgdd.vn/Products/Images/44/231253/macbook-pro-m1-2020-gray-600x600.jpg" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    
+                    <button type= "button" class="btn btn-primary" onclick="openIOT()" style="float: left;">Show IOT Statistics</button>
+                    <button type= "button" class="btn btn-primary" onclick="openForm()">MAINTENANCE</button>
+                        <div class="form-popup" id="myForm">
+
+                             <form action="/action_page.php" class="form-container">
+                                 <style>
+                                h1 {
+                                    font-size: 20px;
+                                }
+                                 </style>
+                                <h1>Is the machine operating correctly?</h1>
+                                <button type="button" id="tagTurnGreen" class="btn" data-bs-dismiss="modal" onclick="closeForm()">YES</button>
+                                <button type="button" class="btn cancel" onclick="openFBForm();closeForm();" >NO</button>
+
+                             </form>
+                         </div>
+
+                         <div class="form-popup2" id="fbForm">
+
+                            <form action="/action_page.php" class="fbForm-container ">
+                                    <style>
+                                    h1 {
+                                        font-size: 20px;
+                                        padding: 5px;
+                                        gap: 15px;
+                                    }
+                                    </style>
+                                    <button type="button" class="btn-close" onclick="closeFBForm()" aria-label="Close" style="float: right;top: 15px;right: 15px;
+                                    position: absolute;" ></button>
+                                    <h1>What is the issue?</h1>
+                                    <textarea id="fbreview" name="fbreview" rows="12" cols="60" style="resize: none;gap: 80px;" wrap="hard"></textarea>
+                                    
+                                   <button type= "button" id="tagTurnRed" class="btn btn-primary" onclick="closeFBForm();fbFiled();" style="float:bottom" >Submit</button>
+
+                            </form>
+
+
+                        </div>
+
+                        
+                        <div class="form-popup3 col-3" id="IOTForm">
+
+                            <form action="/action_page.php" class="IOTForm-container">
+                                    <style>
+                                    h1 {
+                                        font-size: 20px;
+                                        padding: 5px;
+                                        gap: 15px;
+                                    }
+                                    </style>
+                                    <button type="button" class="btn-close" onclick="closeIOTForm()" aria-label="Close" style="float: right;top: 15px;right: 15px;
+                                    position: absolute;" ></button>
+                                    <h1>IOT Statistics</h1>
+
+
+                                    <style type="text/css">
+                                        g[class$='creditgroup'] {
+                                             display:none !important;
+                                        }
+                                    </style>
+
+
+
+                                    <!-- start of live temp code -->
+                                    <figure class="highcharts-figure">
+                                        <div id="container"></div>
+                                    </figure>
+                                    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+                                    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+                                    <script type="text/javascript">
+                                        FusionCharts.ready(function(){
+                                            var chartObj = new FusionCharts({
+                                    type: 'thermometer',
+                                    renderAt: 'chart-container',
+                                    width: '240',
+                                    height: '310',
+                                    dataFormat: 'json',
+                                    dataSource: {
+                                        "chart": {
+                                            "caption": "Temperature Monitor",
+                                            "subcaption": " Tank Temperature(°C)",
+                                            "lowerLimit": "-10",
+                                            "upperLimit": "0",
+
+                                            "decimals": "1",
+                                            "numberSuffix": "°C",
+                                            "showhovereffect": "1",
+                                            "thmFillColor": "#008ee4",
+                                            "showGaugeBorder": "1",
+                                            "gaugeBorderColor": "#008ee4",
+                                            "gaugeBorderThickness": "2",
+                                            "gaugeBorderAlpha": "30",
+                                            "thmOriginX": "100",
+                                            "chartBottomMargin": "20",
+                                            "valueFontColor": "#000000",
+                                            "theme": "fusion"
+                                        },
+                                        "value": "-6",
+                                        //All annotations are grouped under this element
+                                        "annotations": {
+                                            "showbelow": "0",
+                                            "groups": [{
+                                                //Each group needs a unique ID
+                                                "id": "indicator",
+                                                "items": [
+                                                    //Showing Annotation
+                                                    {
+                                                        "id": "background",
+                                                        //Rectangle item
+                                                        "type": "rectangle",
+                                                        "alpha": "50",
+                                                        "fillColor": "#AABBCC",
+                                                        "x": "$gaugeEndX-40",
+                                                        "tox": "$gaugeEndX",
+                                                        "y": "$gaugeEndY+54",
+                                                        "toy": "$gaugeEndY+72"
+                                                    }
+                                                ]
+                                            }]
+
+                                        },
+                                    },
+                                    "events": {
+                                        "rendered": function(evt, arg) {
+                                            evt.sender.dataUpdate = setInterval(function() {
+                                                var value,
+                                                    prevTemp = evt.sender.getData(),
+                                                    mainTemp = (Math.random() * 10) * (-1),
+                                                    diff = Math.abs(prevTemp - mainTemp);
+
+                                                diff = diff > 1 ? (Math.random() * 1) : diff;
+                                                if (mainTemp > prevTemp) {
+                                                    value = prevTemp + diff;
+                                                } else {
+                                                    value = prevTemp - diff;
+                                                }
+
+                                                evt.sender.feedData("&value=" + value);
+
+                                            }, 3000);
+                                            evt.sender.updateAnnotation = function(evtObj, argObj) {
+                                                var code,
+                                                    chartObj = evtObj.sender,
+                                                    val = chartObj.getData(),
+                                                    annotations = chartObj.annotations;
+
+                                                if (val >= -4.5) {
+                                                    code = "#00FF00";
+                                                } else if (val < -4.5 && val > -6) {
+                                                    code = "#ff9900";
+                                                } else {
+                                                    code = "#ff0000";
+                                                }
+                                                annotations.update("background", {
+                                                    "fillColor": code
+                                                });
+                                            };
+                                        },
+                                        'renderComplete': function(evt, arg) {
+                                            evt.sender.updateAnnotation(evt, arg);
+                                        },
+                                        'realtimeUpdateComplete': function(evt, arg) {
+                                            evt.sender.updateAnnotation(evt, arg);
+                                        },
+                                        'disposed': function(evt, arg) {
+                                            clearInterval(evt.sender.dataUpdate);
+                                        }
+                                    }
+                                }
+                                );
+                                            chartObj.render();
+                                        });
+                                    </script>
+                                    </head>
+                                    <body>
+                                        <div id="chart-container" style="float: left;"></div>
+                                    </body>
+                                    <!-- end of live temp code -->
+                                    <!-- start of history temp code -->
+
+                                    <script type="text/javascript">
+                                        FusionCharts.ready(function(){
+                                            var chartObj = new FusionCharts({
+                                    type: 'line',
+                                    renderAt: 'historyChart',
+                                    width: '680',
+                                    height: '390',
+                                    dataFormat: 'json',
+                                    dataSource: {
+                                        "chart": {
+                                            "theme": "fusion",
+                                            "caption": "History of temperature",
+                                            "subCaption": "Last week",
+                                            "xAxisName": "Day",
+                                            "yAxisName": "Temp.(°C)",
+                                            "lineThickness": "2"
+                                        },
+                                        "data": [{
+                                                "label": "Mon",
+                                                "value": "-4.7"
+                                            },
+                                            {
+                                                "label": "Tue",
+                                                "value": "-4.4"
+                                            },
+                                            {
+                                                "label": "Wed",
+                                                "value": "-5.1"
+                                            },
+                                            {
+                                                "label": "Thu",
+                                                "value": "-4"
+                                            },
+                                            {
+                                                "label": "Fri",
+                                                "value": "-3.6"
+                                            },
+                                            {
+                                                "label": "Sat",
+                                                "value": "-5.1"
+                                            },
+                                            {
+                                                "label": "Sun",
+                                                "value": "-4.9"
+                                            }
+                                        ],
+                                        "trendlines": [{
+                                            "line": [{
+                                                "startvalue": "-4.7",
+                                                "color": "#29C3BE",
+                                                "displayvalue": "Average{br}Temperature",
+                                                "valueOnRight": "1",
+                                                "thickness": "2"
+                                            }]
+                                        }]
+                                    }
+                                });
+                                            chartObj.render();
+                                        });
+                                    </script>
+
+                                    <body>
+                                        <div id="historyChart" style="position: absolute;left: 200px;bottom: 66px;"></div>
+                                    </body>
+                                    <!-- end of history temp code -->
+                                    <div class="blockwatermark-container1">
+                                    </div><div class="blockwatermark-container2">
+                                    </div>
+                                    <!-- <div>Power</div>
+                                    <div>Input</div>
+                                    <div>Output</div> -->
+                                    
+                                     <b style="position: absolute;top: 420px;right: 807px;">Power</b>
+                                     <b style="position: absolute;top: 420px;right: 707px;">Input</b>
+                                     <b style="position: absolute;top: 420px;right: 607px;">Output</b>
+                                    
+                                      <label class="switch" style="position: absolute;top: 450px;right: 700px;">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round"></span>
+                                      </label>
+                                      <label class="switch" style="position: absolute;top: 450px;right: 800px;">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round"></span>
+                                      </label>
+                                      <label class="switch" style="position: absolute;top: 450px;right: 600px;">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round"></span>
+                                      </label>
+
+                            </form>
+
+
+                        </div>
+
+
+                    <button type="button" data-bs-dismiss="modal" class="btn btn-primary">Add to cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openForm() 
+        {
+        document.getElementById("myForm").style.display = "block";
+        }
+        function openIOT() 
+        {
+        document.getElementById("IOTForm").style.display = "block";
+
+        }function closeIOTForm() 
+        {
+        document.getElementById("IOTForm").style.display = "none";
+        }
+
+        function openFBForm() 
+        {
+        document.getElementById("fbForm").style.display = "block";
+        }
+        function closeFBForm() 
+        {
+        document.getElementById("fbForm").style.display = "none";
+        }
+
+        function closeForm() 
+        {
+        document.getElementById("myForm").style.display = "none";
+        }
+        function fbFiled() {
+  alert("Issue filed");
+  document.getElementById('fbreview').value = '';
+}
+        </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    
+
+</body>
