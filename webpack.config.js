@@ -37,6 +37,8 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
-    port: 8000
+    allowedHosts: [
+      'MEPRoom.us-west-2.elasticbeanstalk.com',
+    ],
   }
 };
