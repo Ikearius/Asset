@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const correctport = process.env.port || 3000;
+//const correctport = process.env.port || 3000;
 
 module.exports = {
   mode: 'development',
@@ -37,6 +37,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
-    port: correctport
+    port: 8000
   }
 };
