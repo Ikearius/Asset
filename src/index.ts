@@ -591,7 +591,7 @@ btnPlayGame.addEventListener("click", async function () {
 
 const express = require('express');
 const makeportwork = express();
-const port = process.env.port || 3000;
+const port = process.env.port || 8000;
 makeportwork.listen(port, () => {
   console.log("hope this works");
 });
