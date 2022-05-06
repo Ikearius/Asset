@@ -36,6 +36,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
-    port: process.env.PORT || 8080
+    port: process.env.PORT || 8001
   }
 };
