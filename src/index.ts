@@ -32,7 +32,7 @@ const btnSearchTag = document.getElementById("btnSearchTag") as HTMLButtonElemen
 const btnSearchItem = document.getElementById("btnSeachItem") as HTMLButtonElement;
 const listItem = document.getElementById("list-item") as HTMLDivElement;
 const key = "mub8swy2n1ney58icx3p07e6b";
-const urlBase = "http://113.29.227.172:8000/api/";
+const urlBase = "http://113.29.227.172:8080/api/";
 // declare this file is a module
 export {};
 
