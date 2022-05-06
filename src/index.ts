@@ -587,11 +587,3 @@ btnPlayGame.addEventListener("click", async function () {
     divScore.style.display = "block";
     alert("welcome to Walkthrough Tutorial")
 });
-
-
-const express = require('express');
-const makeportwork = express();
-const port = process.env.PORT || 8001;
-makeportwork.listen(port, () => {
-  console.log("hope this works");
-});
