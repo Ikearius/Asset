@@ -214,23 +214,24 @@ function callbackCameraMove(pose: { position: {x: number;y: number;z: number;};r
           if(dir >= 337.5 || dir <22.5){
       whichdirection= "North"
     }else if(dir >= 22.5 && dir <67.5){
-      whichdirection= "North-East"
+      whichdirection= "North-West"
     }else if(dir >= 67.5 && dir <112.5){
-      whichdirection= "East"
+      whichdirection= "West"
     }else if(dir >= 112.5 && dir <157.5){
-      whichdirection= "South-East"
+      whichdirection= "South-West"
     }else if(dir >= 157.5 && dir <202.5){
       whichdirection= "South"
     }else if(dir >= 202.5 && dir <247.5){
-      whichdirection= "South-West"
+      whichdirection= "South-East"
     }else if(dir >= 247.5 && dir <292.5){
-      whichdirection= "West"
+      whichdirection= "East"
     }else if(dir >= 292.5 && dir <337.5){
-      whichdirection= "North-West"
+      whichdirection= "North-East"
     }
+    dir = 360-dir;
     const degree = parseFloat(dir).toFixed(1);
     
-    document.getElementById("displaydegree").innerHTML= degree + "°";
+    document.getElementById("displaydegree").innerHTML= degree+ "°";
     document.getElementById("displaydirection").innerHTML ="Direction: "+ whichdirection;
     console.log("degrees: " +dir,"\n", "direction:"+ whichdirection);
 }

@@ -29,7 +29,7 @@
   top: 0px;
   left: 0px;
   z-index: 200;
-  background-image: url('../js/image/compass_bodyV3_white.png');
+  background-image: url('../image/compass_bodyV4_white.png');
   width: 90px;
   height: 90px;
   background-size: 100%;
@@ -41,7 +41,7 @@
   left: 0px;
   z-index: 1000;
   background-repeat: no-repeat;
-  background-image: url('../js/image/compass_needleV1.png');
+  background-image: url('../image/compass_needleV2.png');
   width: 90px;
   height: 90px;
   background-size: 100%;
